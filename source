@@ -1,0 +1,69 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({
+    Name = "Flame Hub", 
+    HidePremium = false, 
+    SaveConfig = true, 
+    ConfigFolder = "FlameHub",
+    Icon = "https://cdn.discordapp.com/icons/1269845621557170277/699e44e15e1c2a5036e1b2bacb154475.webp?size=1024&format=webp&width=0&height=192",
+    IntroIcon = "https://cdn.discordapp.com/icons/1269845621557170277/699e44e15e1c2a5036e1b2bacb154475.webp?size=1024&format=webp&width=0&height=192",
+    IntroEnabled = true,
+    IntroText = "Flame Hub"
+})
+
+local Tab = Window:MakeTab({
+	Name = "Tab 1",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Section"
+})
+
+Tab:AddButton({
+	Name = "Button!",
+	Callback = function()
+      		print("button pressed")
+  	end    
+})
+
+Tab:AddButton({
+    Name = "Destroy",
+    Callback = function()
+        OrionLib:Destroy()
+    end
+})
+
+Tab:AddToggle({
+	Name = "This is a toggle!",
+	Default = false,
+	Callback = function(Value)
+		print(Value)
+	end    
+})
+
+Tab:AddSlider({
+	Name = "Slider",
+	Min = 0,
+	Max = 20,
+	Default = 5,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "bananas",
+	Callback = function(Value)
+		print(Value)
+	end    
+})
+
+Tab:AddParagraph("Paragraph","Paragraph Content")
+
+Tab:AddDropdown({
+	Name = "Dropdown",
+	Default = "1",
+	Options = {"1", "2"},
+	Callback = function(Value)
+		print(Value)
+	end    
+})
+
+OrionLib:Init()
