@@ -19,20 +19,11 @@ local Tab = Window:MakeTab({
 local InfiniteJump = false
 
 local Section = Tab:AddSection({
-	Name = "Section"
+	Name = "👆 Toggles"
 })
-
-Tab:AddButton({
-	Name = "Button!",
-	Callback = function()
-        
-  	end    
-})
-
-
 
 Tab:AddToggle({
-	Name = "This is a toggle!",
+	Name = "Infinite Jump",
 	Default = false,
 	Callback = function(Value)
 		InfiniteJump = Value
@@ -44,6 +35,10 @@ Tab:AddToggle({
             Time = 5
         })
 	end    
+})
+
+local Section = Tab:AddSection({
+	Name = "🎚️ Sliders"
 })
 
 Tab:AddSlider({
@@ -80,6 +75,10 @@ Tab:AddSlider({
         Player.Character.Humanoid.JumpPower = Value
 
 	end    
+})
+
+local Section = Tab:AddSection({
+	Name = "⚠️ DANGEROUS"
 })
 
 Tab:AddButton({
