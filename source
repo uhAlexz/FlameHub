@@ -16,6 +16,8 @@ local Tab = Window:MakeTab({
 	PremiumOnly = false
 })
 
+local InfiniteJump = false
+
 local Section = Tab:AddSection({
 	Name = "Section"
 })
@@ -23,13 +25,61 @@ local Section = Tab:AddSection({
 Tab:AddButton({
 	Name = "Button!",
 	Callback = function()
+        
+  	end    
+})
+
+
+
+Tab:AddToggle({
+	Name = "This is a toggle!",
+	Default = false,
+	Callback = function(Value)
+		InfiniteJump = Value
+
         OrionLib:MakeNotification({
-            Name = "Button",
-            Content = "You have clicked the button.",
+            Name = "Infinite Jump",
+            Content = "Infinite jump has been set to " .. Value .. "!",
             Image = "rbxassetid://4483345998",
             Time = 5
         })
-  	end    
+	end    
+})
+
+Tab:AddSlider({
+	Name = "Speed",
+	Min = 16,
+	Max = 320,
+	Default = 16,
+	Color = Color3.fromRGB(0, 123, 255),
+	Increment = 1,
+	ValueName = "WS",
+	Callback = function(Value)
+
+		local Players = game:GetService("Players")
+        local Player = Players.LocalPlayer
+
+        Player.Character.Humanoid.WalkSpeed = Value
+
+	end    
+})
+
+Tab:AddSlider({
+	Name = "Jump",
+	Min = 50,
+	Max = 1000,
+	Default = 50,
+	Color = Color3.fromRGB(0, 255, 85),
+	Increment = 1,
+	ValueName = "JP",
+	Callback = function(Value)
+
+		local Players = game:GetService("Players")
+        local Player = Players.LocalPlayer
+
+        Player.Character.Humanoid.JumpPower = Value
+
+	end    
 })
 
 Tab:AddButton({
@@ -39,36 +89,17 @@ Tab:AddButton({
     end
 })
 
-Tab:AddToggle({
-	Name = "This is a toggle!",
-	Default = false,
-	Callback = function(Value)
-		print(Value)
-	end    
-})
-
-Tab:AddSlider({
-	Name = "Slider",
-	Min = 0,
-	Max = 20,
-	Default = 5,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "bananas",
-	Callback = function(Value)
-		print(Value)
-	end    
-})
-
-Tab:AddParagraph("Paragraph","Paragraph Content")
-
-Tab:AddDropdown({
-	Name = "Dropdown",
-	Default = "1",
-	Options = {"1", "2"},
-	Callback = function(Value)
-		print(Value)
-	end    
-})
+local plr = game:GetService('Players').LocalPlayer
+local m = plr:GetMouse()
+m.KeyDown:Connect(function(key)
+    if InfiniteJump then
+        if key:byte() == 32 then
+            local Humanoid = plr.Character:FindFirstChild('Humanoid')
+            Humanoid:ChangeState('Jumping')
+            wait()
+            Humanoid:ChangeState('Seated')
+        end
+    end
+end)
 
 OrionLib:Init()
