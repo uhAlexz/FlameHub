@@ -36,10 +36,11 @@ Tab:AddToggle({
 	Default = false,
 	Callback = function(Value)
 		InfiniteJump = Value
+        local valueStr = string(Value)
 
         OrionLib:MakeNotification({
             Name = "Infinite Jump",
-            Content = "Infinite jump has been set to " .. Value .. "!",
+            Content = "Infinite jump has been set to " .. valueStr .. "!",
             Image = "rbxassetid://4483345998",
             Time = 5
         })
