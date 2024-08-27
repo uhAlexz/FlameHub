@@ -23,7 +23,12 @@ local Section = Tab:AddSection({
 Tab:AddButton({
 	Name = "Button!",
 	Callback = function()
-      		print("button pressed")
+        OrionLib:MakeNotification({
+            Name = "Button",
+            Content = "You have clicked the button.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
   	end    
 })
 
